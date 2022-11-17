@@ -8,7 +8,7 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js'
     },
-    mode: process.env.NODE_ENV,
+    mode: 'development',
     module: {
         rules: [
             {
@@ -38,12 +38,13 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Development',
-            template: 'index.html'
+            template: './client/index.html'
         }),
     ],
     devServer: {
         host: 'localhost',
-        post: 8080,
+        compress: true,
+        port: 8080,
         static: {
             directory: path.join(__dirname, 'build'),
             publicPath: '/'
