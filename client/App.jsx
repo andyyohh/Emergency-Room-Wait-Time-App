@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import ERList from './ERList.jsx';
 
 class App extends React.Component {
@@ -6,26 +6,38 @@ class App extends React.Component {
         super(props);
         this.state = {
             ERs: [],
-            location: ''
+            location: '',
+            address: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
     }
     render() {
         return(
             <div>
                 <h2>
-                    Emergency Rooms Near You
+                    Urgent Care Centers Near You
                 </h2>
                 <ERList ERs={this.state.ERs} />
                 <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Add New Location"
-                        onChange={this.handleChange}
-                        value={this.state.location}
-                    />
-                    <button>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Add New Location"
+                            onChange={this.handleChange}
+                            // value={this.state.location}
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Address"
+                            onChange={this.handleChange}
+                            value={this.state.address}
+                        />
+                    </div>
+                    <button onClick={this.handleClick}>
                         Submit
                     </button>
                 </form>
@@ -33,7 +45,10 @@ class App extends React.Component {
         );
     }
     handleChange(e) {
-        this.setState({ location: e.target.location })
+        this.setState({
+             location: e.target.location,
+             address: e.target.address
+        })
     }
     handleSubmit(e) {
         e.preventDefault();
